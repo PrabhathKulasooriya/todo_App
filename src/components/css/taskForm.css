@@ -1,0 +1,68 @@
+.task-form-container{
+    margin: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: aqua;
+
+}
+.create-task-btn{
+    background-color: #34495e;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: aliceblue;
+    width:100%;
+    margin-bottom: 20px;
+}
+.task{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    margin: 5px 0px;
+}
+label{
+    min-width: 90px;
+}
+#name{
+    min-width: 100px;
+    width: 75%;
+    height: 30px;
+}
+#description{
+    min-width: 100px;
+    width: 75%;
+    height: 100px;
+}
+#date{
+    min-width: 100px;
+    width: 75%;
+    text-align: center;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 25%;
+}
+.btn{
+    width: 70px;
+    height: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+}
+.cancel-btn:hover{
+    background-color: rgb(228, 122, 122);
+}
+.submit-btn:hover{
+    background-color: rgb(122, 228, 122);
+}
+
+.shrunk{
+    display: none;
+}
