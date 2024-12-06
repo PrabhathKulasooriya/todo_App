@@ -1,8 +1,13 @@
-# React + Vite
+This is a simple Todo app built with React and Vite. The app allows users to manage their tasks with basic functionality such as adding, deleting, and marking tasks as complete. Data is stored locally in the browser's localStorage, so no external database is used.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Features
+-Add tasks to your to-do list
+-Mark tasks as completed
+-Delete tasks from the list
+-Persist tasks in the browser's localStorage (even after page refresh)
+-Simple and minimal user interface
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Technologies Used
+-React: JavaScript library for building user interfaces
+-Vite: Next-generation front-end tool for faster builds and hot module replacement (HMR)
+-localStorage: Store tasks locally in the browser
