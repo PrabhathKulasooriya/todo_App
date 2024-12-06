@@ -1,17 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./css/TaskForm.css";
+import { GrClose } from "react-icons/gr";
 
-function TaskForm({ onAddTask }) {
+function TaskForm({
+  onAddTask,
+  onUpdateTask,
+  taskToEdit,
+  isEditing,
+  setIsEditing,
+}) {
   const [taskName, setTaskName] = useState("");
   const [text, setText] = useState("");
   const [date, setDate] = useState("");
   const [isShrunk, setIsShrunk] = useState(true);
+
+  // Populate form when editing
+  useEffect(() => {
+    if (taskToEdit && isEditing) {
+      setTaskName(taskToEdit.taskName);
+      setText(taskToEdit.description);
+      setDate(taskToEdit.date);
+      setIsShrunk(false);
+    }
+  }, [taskToEdit, isEditing]);
 
   const toggleForm = () => {
     if (!isShrunk) {
       setTaskName("");
       setText("");
       setDate("");
+      if (isEditing) {
+        setIsEditing(false);
+      }
     }
     setIsShrunk((prevState) => !prevState);
   };
@@ -47,37 +67,64 @@ function TaskForm({ onAddTask }) {
       return;
     }
 
-    const newTask = {
+    const taskData = {
       taskName: taskName,
       description: text,
       date: date,
     };
 
-    onAddTask(newTask);
+    if (isEditing) {
+      onUpdateTask(taskData);
+      setIsEditing(false);
+    } else {
+      onAddTask(taskData);
+    }
+
     setTaskName("");
     setText("");
     setDate("");
     toggleForm();
   };
-  const clearForm = ()=>{
+
+  const clearForm = (event) => {
     event.preventDefault();
     setTaskName("");
     setText("");
     setDate("");
-  }
+  };
 
-  // Get today's date in YYYY-MM-DD format for min attribute
+  const closeForm = (event) => {
+    event.preventDefault();
+    if (isEditing) {
+      setIsEditing(false);
+    }
+    toggleForm();
+  };
+
   const today = new Date().toISOString().split("T")[0];
 
   return (
     <div className="task-form-container">
       <div className="create-task-button-container">
-        <button className="create-task-btn" onClick={toggleForm}>
-          {isShrunk ? "+ Add New Task " : "Close Form"}
-        </button>
+        {!isEditing && (
+          <button
+            className={`create-task-btn ${isShrunk ? "" : "shrunk"}`}
+            onClick={toggleForm}
+          >
+            {isShrunk ? "+ Add New Task " : ""}
+          </button>
+        )}
       </div>
-      <div className="task-form-div">
-        <form action="" className={`task-form ${isShrunk ? "shrunk" : ""}`}>
+      <div
+        className={`task-form-div ${isShrunk && !isEditing ? "shrunk" : ""}`}
+      >
+        <form
+          action=""
+          className={`task-form ${isShrunk && !isEditing ? "shrunk" : ""}`}
+        >
+          <button className="close-btn" onClick={closeForm}>
+            <GrClose size={28} />
+          </button>
           <div className="task">
             <label htmlFor="name">Task Name : </label>
             <input
@@ -96,7 +143,7 @@ function TaskForm({ onAddTask }) {
               value={text}
               onChange={handleDescriptionChange}
               rows="5"
-              cols="50"
+              cols="70"
               id="description"
             />
           </div>
@@ -114,7 +161,7 @@ function TaskForm({ onAddTask }) {
 
           <div className="buttons">
             <button className="submit-btn btn" onClick={displayDataHandler}>
-              Add Task
+              {isEditing ? "Update" : "Add Task"}
             </button>
             <button className="cancel-btn btn" onClick={clearForm}>
               Clear Form

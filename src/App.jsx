@@ -10,6 +10,9 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
   const [deletedTasks, setDeletedTasks] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [taskToEdit, setTaskToEdit] = useState(null);
+  const [editIndex, setEditIndex] = useState(null);
 
   useEffect(() => {
     const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -51,31 +54,27 @@ function App() {
     localStorage.setItem("deletedTasks", JSON.stringify(updatedDeletedTasks));
   };
 
+  const editTask = (index) => {
+    setTaskToEdit(tasks[index]);
+    setEditIndex(index);
+    setIsEditing(true);
+  };
+
+  const handleUpdateTask = (updatedTask) => {
+    const updatedTasks = tasks.map((task, i) =>
+      i === editIndex ? { ...task, ...updatedTask } : task
+    );
+    setTasks(updatedTasks);
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    setTaskToEdit(null);
+    setEditIndex(null);
+    setIsEditing(false);
+  };
+
   const permanentlyDeleteTask = (index) => {
     const updatedDeletedTasks = deletedTasks.filter((_, i) => i !== index);
     setDeletedTasks(updatedDeletedTasks);
     localStorage.setItem("deletedTasks", JSON.stringify(updatedDeletedTasks));
-  };
-
-  const editTask = (index) => {
-    const taskToEdit = tasks[index];
-    const newTaskName = prompt("Edit Task Name:", taskToEdit.taskName);
-    const newDescription = prompt("Edit Description:", taskToEdit.description);
-    const newDate = prompt("Edit Date:", taskToEdit.date);
-    if (newTaskName && newDescription && newDate) {
-      const updatedTasks = tasks.map((task, i) =>
-        i === index
-          ? {
-              ...task,
-              taskName: newTaskName,
-              description: newDescription,
-              date: newDate,
-            }
-          : task
-      );
-      setTasks(updatedTasks);
-      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-    }
   };
 
   const completeTask = (index) => {
@@ -91,17 +90,20 @@ function App() {
     );
   };
 
-  const restoreTaskCompleted=(index)=>{
+  const restoreTaskCompleted = (index) => {
     const taskToRestore = completedTasks[index];
     const updatedCompletedTasks = completedTasks.filter((_, i) => i !== index);
     const updatedTasks = [...tasks, taskToRestore];
     setCompletedTasks(updatedCompletedTasks);
     setTasks(updatedTasks);
-    localStorage.setItem("completedTasks", JSON.stringify(updatedCompletedTasks));
+    localStorage.setItem(
+      "completedTasks",
+      JSON.stringify(updatedCompletedTasks)
+    );
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-  }
+  };
 
-  const restoreTaskDeleted=(index)=>{
+  const restoreTaskDeleted = (index) => {
     const taskToRestore = deletedTasks[index];
     const updatedDeletedTasks = deletedTasks.filter((_, i) => i !== index);
     const updatedTasks = [...tasks, taskToRestore];
@@ -109,7 +111,7 @@ function App() {
     setTasks(updatedTasks);
     localStorage.setItem("deletedTasks", JSON.stringify(updatedDeletedTasks));
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-  }
+  };
 
   return (
     <div className="container-app">
@@ -125,6 +127,10 @@ function App() {
                 onEditTask={editTask}
                 onDeleteTask={(index) => deleteTask(index, "todo")}
                 onCompleteTask={completeTask}
+                onUpdateTask={handleUpdateTask}
+                taskToEdit={taskToEdit}
+                isEditing={isEditing}
+                setIsEditing={setIsEditing}
               />
             }
           />

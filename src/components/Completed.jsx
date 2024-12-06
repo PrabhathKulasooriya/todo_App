@@ -5,9 +5,9 @@ function Completed({ tasks, onDeleteTask, onRestoreTaskCompleted}) {
     <div className="container-completed">
       <h1 className="todo-title">Completed Tasks</h1>
       {tasks.length === 0 ? (
-        <p>No completed tasks.</p>
+        <p>No completed tasks.*</p>
       ) : (
-        <ul>
+        <ul className="task-list">
           {tasks.map((task, index) => (
             <li key={index} className="task-item">
               <h3>{task.taskName}</h3>
