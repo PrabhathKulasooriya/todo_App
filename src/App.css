@@ -1,0 +1,352 @@
+.container-app{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    background-color: aliceblue ;
+}
+.container-path{
+    width: 100%;
+}
+.navbar {
+  display: flex;
+  flex-direction: column;
+  background-color: #2c3e50;
+  width: 250px;
+  height: 100vh;
+  transition: width 0.3s ease;
+  overflow: none;
+}
+
+.navbar.shrunk {
+  max-width: 60px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  color: white;
+}
+
+.menu-title {
+  margin: 0;
+  width: 100%;
+  font-size: 2rem;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+.toggle-btn:hover{
+  color: #1abc9c;
+}
+
+.links {
+  margin-top: 25px;;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+}
+
+.link.active {
+  color: #1abc9c; 
+}
+.link.active:hover{
+  color: white;
+}
+.link-content {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #34495e;
+  margin: 15px 0;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.link-content:hover {
+  background-color: #1abc9c;
+}
+
+.icon {
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+.navbar.shrunk .icon {
+  margin-right: 0; 
+}
+
+.text {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+
+.navbar.shrunk .text {
+  display: none;
+}
+
+
+.task-form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    height: auto;
+}
+.create-task-button-container{
+    width: 100%;
+    height: 50px;
+    text-align: right;
+}
+.create-task-btn{
+    font-size: 2rem;
+    background-color: #2c3e50;
+    font-weight: bold;
+    color: aliceblue;
+    min-width: 300px;
+    height: 50px;
+    border: none;
+    text-align: center;
+    border-radius: 20px;
+    margin: 10px 10px 0 0;
+}
+.create-task-btn:hover{
+    color: #1abc9c;
+}
+.task-form{
+    padding-right: 20px;
+    min-width: 400px;
+    width: 45%;
+    color: aliceblue;
+    font-size: 1.2rem;
+    height: 50%;
+    overflow: none;
+}
+.task-form #name, #description, #date{
+    border-radius: 10px;
+    height: 50px;
+    font-size: 22px;
+    padding: 0 10px;
+}
+.task-form-div{
+    width: 100%;
+    height: 100vh;
+    background-color:rgba(44, 62, 80, 0.98);
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+
+}
+.task{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    gap: 5px;
+    margin: 5px 0px;
+    font-size: 22px;
+}
+.close-btn{
+    border: none;
+    color: aliceblue;
+    background-color:transparent; 
+    cursor: pointer;
+}
+.close-btn:hover{
+    color: red;
+}
+
+label{
+    min-width: 90px;
+}
+#name{
+    min-width: 100px;
+    width: 75%;
+    height: 30px;
+}
+#description{
+    min-width: 100px;
+    width: 75%;
+    height: 100px;
+}
+#date{
+    min-width: 100px;
+    width: 75%;
+    text-align: center;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10%;
+    position: relative;
+    height: 50px;
+    padding-right: 15%;
+}
+.btn{
+    width: 130px;
+    height: 40px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: aliceblue ;
+    border: 3px solid #2c3e50;
+}
+
+.cancel-btn:hover{
+    background-color: rgb(228, 122, 122);
+}
+.submit-btn:hover{
+    background-color: #1abc9c;
+}
+
+.shrunk{
+    display: none;
+}
+
+.container-todo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.complete-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 70px;
+}
+
+.edit-btn {
+  background-color: #ffc107;
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 70px;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 70px;
+}
+
+.task-buttons button:hover {
+  opacity: 0.9;
+}
+.task-list-container{
+    /* background-color: #28a745; */
+    width: 100%;
+    height: auto;
+}
+.task-list-title{
+    font-size: 2.5rem;
+    color: #2c3e50;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    text-decoration: underline;
+}
+.task-list{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 5%;
+}
+.task-item{
+    border: 1px solid black;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    width: 350px;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background-color: #2c3e50;
+    color: aliceblue;
+    font-size: 18px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visual appeal */
+    transition: transform 0.2s, box-shadow 0.2s; /* Add hover animation */
+}
+.task-item:hover {
+    transform: translateY(-5px); /* Hover effect to lift the item slightly */
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+.task-name{
+  font-size: 1.8rem;
+}
+.todo-title{
+  font-size: 3rem;
+  background-color: #2c3e50;
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+.permrently-delete-btn{
+  width: auto;
+}
+.restore-btn{
+  width: auto;
+  background-color: blue;
+}
+p{
+  margin: 20px;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    width: 200px;
+  }
+
+  .navbar.shrunk {
+    width: 60px;
+  }
+
+
+  .navbar.shrunk .text {
+    display: inline;
+  }
+}
